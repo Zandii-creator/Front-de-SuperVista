@@ -2,6 +2,8 @@
 
 Landing page de venta de espejuelos personalizados, con estética verde pastel y futurista. HTML, CSS y JavaScript vanilla, sin frameworks ni dependencias.
 
+Repositorio: [Zandii-creator/Front-de-SuperVista](https://github.com/Zandii-creator/Front-de-SuperVista)
+
 ## Cómo verla
 
 ```bash
@@ -29,7 +31,16 @@ js/frames.js               Formas, colores y renderizador SVG de monturas
 assets/img/*.svg           Imágenes de producto y favicon
 tools/generate-assets.mjs  Generador de las imágenes SVG
 tools/serve.mjs            Servidor estático local
+AGENTS.md                  Contexto operativo para agentes de IA
+docs/SPEC.md               Especificación funcional y técnica
+docs/CHANGELOG.md          Historial de cambios y pendientes
 ```
+
+## Documentación
+
+- **[`AGENTS.md`](AGENTS.md)**: contexto que OpenCode carga automáticamente en cada sesión (arquitectura, reglas, diseño, accesibilidad y flujo de Git).
+- **[`docs/SPEC.md`](docs/SPEC.md)**: especificación completa de la landing, catálogo, personalizador, carrito y decisiones técnicas.
+- **[`docs/CHANGELOG.md`](docs/CHANGELOG.md)**: qué se ha hecho, cuándo y qué queda pendiente.
 
 ## Personalización rápida
 
