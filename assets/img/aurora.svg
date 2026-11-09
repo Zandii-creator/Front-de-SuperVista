@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Espejuelos Aurora, montura redonda verde">
+  <defs>
+    <linearGradient id="sv1-lens" x1="180" y1="270" x2="620" y2="530" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7cf7c0" stop-opacity=".92"/>
+      <stop offset=".55" stop-color="#7cf7c0" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".16"/>
+    </linearGradient>
+    <linearGradient id="sv1-rim" x1="170" y1="290" x2="630" y2="510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#639f8d"/>
+      <stop offset=".45" stop-color="#0f6b4f"/>
+      <stop offset="1" stop-color="#0f6b4f"/>
+    </linearGradient>
+    <linearGradient id="sv1-bg" x1="0" y1="0" x2="800" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2fffa"/>
+      <stop offset="1" stop-color="#bdf3d7"/>
+    </linearGradient>
+    <pattern id="sv1-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0a3527" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="sv1-blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="46"/>
+    </filter>
+    <filter id="sv1-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  
+    <rect width="800" height="800" fill="url(#sv1-bg)"/>
+    <rect width="800" height="800" fill="url(#sv1-grid)"/>
+    <circle cx="650" cy="164" r="178" fill="none" stroke="#0a3527" stroke-opacity=".10"/>
+    <circle cx="650" cy="164" r="118" fill="none" stroke="#0a3527" stroke-opacity=".08"/>
+    <circle cx="128" cy="656" r="158" fill="#8dffcf" opacity=".5" filter="url(#sv1-blur)"/>
+    <circle cx="700" cy="560" r="118" fill="#e7ffc0" opacity=".55" filter="url(#sv1-blur)"/>
+    <circle cx="146" cy="140" r="72" fill="#8dffcf" opacity=".4" filter="url(#sv1-blur)"/>
+    <ellipse cx="400" cy="628" rx="216" ry="22" fill="#0f6b4f" opacity=".16" filter="url(#sv1-soft)"/>
+    <text x="400" y="748" text-anchor="middle" font-family="'Space Grotesk', 'Trebuchet MS', sans-serif" font-size="19" letter-spacing="10" fill="#0a3527" opacity=".32">SUPERVISTA</text>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 194 370 C 164 362 138 352 112 340" fill="none" stroke="#0f6b4f" stroke-width="13"/>
+    <path d="M 194 370 C 164 362 138 352 112 340" transform="matrix(-1 0 0 1 800 0)" fill="none" stroke="#0f6b4f" stroke-width="13"/>
+    <g fill="url(#sv1-lens)" stroke="url(#sv1-rim)" stroke-width="13">
+      <ellipse cx="292" cy="395" rx="100" ry="92"/>
+      <g transform="matrix(-1 0 0 1 800 0)"><ellipse cx="292" cy="395" rx="100" ry="92"/></g>
+    </g>
+    <path d="M 386 356 Q 400 338 414 356" fill="none" stroke="url(#sv1-rim)" stroke-width="13"/>
+    <g fill="none" stroke="#ffffff" stroke-width="5" opacity=".55">
+      <path d="M 238 342 C 262 320 308 314 338 332"/>
+      <path d="M 238 342 C 262 320 308 314 338 332" transform="matrix(-1 0 0 1 800 0)"/>
+    </g>
+    <circle cx="199" cy="368" r="5" fill="#0f6b4f"/>
+    <circle cx="601" cy="368" r="5" fill="#0f6b4f"/>
+    
+  </g>
+</svg>

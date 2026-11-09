@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Espejuelos Prisma, montura geométrica verde">
+  <defs>
+    <linearGradient id="sv6-lens" x1="180" y1="270" x2="620" y2="530" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8fffd0" stop-opacity=".92"/>
+      <stop offset=".55" stop-color="#8fffd0" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".16"/>
+    </linearGradient>
+    <linearGradient id="sv6-rim" x1="170" y1="290" x2="630" y2="510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#689989"/>
+      <stop offset=".45" stop-color="#16624a"/>
+      <stop offset="1" stop-color="#16624a"/>
+    </linearGradient>
+    <linearGradient id="sv6-bg" x1="0" y1="0" x2="800" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2fffa"/>
+      <stop offset="1" stop-color="#c0f2dc"/>
+    </linearGradient>
+    <pattern id="sv6-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0a3527" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="sv6-blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="46"/>
+    </filter>
+    <filter id="sv6-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  
+    <rect width="800" height="800" fill="url(#sv6-bg)"/>
+    <rect width="800" height="800" fill="url(#sv6-grid)"/>
+    <circle cx="650" cy="164" r="178" fill="none" stroke="#0a3527" stroke-opacity=".10"/>
+    <circle cx="650" cy="164" r="118" fill="none" stroke="#0a3527" stroke-opacity=".08"/>
+    <circle cx="128" cy="656" r="158" fill="#84ffd0" opacity=".5" filter="url(#sv6-blur)"/>
+    <circle cx="700" cy="560" r="118" fill="#e2ffc0" opacity=".55" filter="url(#sv6-blur)"/>
+    <circle cx="146" cy="140" r="72" fill="#84ffd0" opacity=".4" filter="url(#sv6-blur)"/>
+    <ellipse cx="400" cy="628" rx="216" ry="22" fill="#16624a" opacity=".16" filter="url(#sv6-soft)"/>
+    <text x="400" y="748" text-anchor="middle" font-family="'Space Grotesk', 'Trebuchet MS', sans-serif" font-size="19" letter-spacing="10" fill="#0a3527" opacity=".32">SUPERVISTA</text>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 188 362 C 158 354 136 346 112 334" fill="none" stroke="#16624a" stroke-width="13"/>
+    <path d="M 188 362 C 158 354 136 346 112 334" transform="matrix(-1 0 0 1 800 0)" fill="none" stroke="#16624a" stroke-width="13"/>
+    <g fill="url(#sv6-lens)" stroke="url(#sv6-rim)" stroke-width="13">
+      <path d="M 384 328 L 330 300 L 230 302 L 186 344 L 190 420 L 240 478 L 330 480 L 382 430 L 384 380 Z"/>
+      <g transform="matrix(-1 0 0 1 800 0)"><path d="M 384 328 L 330 300 L 230 302 L 186 344 L 190 420 L 240 478 L 330 480 L 382 430 L 384 380 Z"/></g>
+    </g>
+    <path d="M 380 344 Q 400 324 420 344" fill="none" stroke="url(#sv6-rim)" stroke-width="13"/>
+    <g fill="none" stroke="#ffffff" stroke-width="5" opacity=".55">
+      <path d="M 228 348 C 256 324 304 320 334 340"/>
+      <path d="M 228 348 C 256 324 304 320 334 340" transform="matrix(-1 0 0 1 800 0)"/>
+    </g>
+    <circle cx="199" cy="368" r="5" fill="#16624a"/>
+    <circle cx="601" cy="368" r="5" fill="#16624a"/>
+    
+  </g>
+</svg>

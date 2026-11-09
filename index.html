@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuperVista · Espejuelos personalizados del futuro</title>
+  <meta name="description" content="Monturas personalizadas, lentes de última generación y diseño futurista. Diseña tus espejuelos SuperVista y recíbelos en 48 horas.">
+  <meta name="theme-color" content="#07251c">
+  <meta property="og:title" content="SuperVista · Espejuelos personalizados del futuro">
+  <meta property="og:description" content="Monturas hechas a tu medida con diseño futurista. Elige forma, color, tinte y grabado en tiempo real.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/aurora.svg">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#coleccion">Saltar al contenido</a>
+
+  <div class="page-glow page-glow--one" aria-hidden="true"></div>
+  <div class="page-glow page-glow--two" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="SuperVista, ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <circle cx="14" cy="21" r="7.5" stroke="currentColor" stroke-width="2.6"/>
+            <circle cx="27.5" cy="21" r="7.5" stroke="currentColor" stroke-width="2.6"/>
+            <path d="M21.4 21h.7M6 18l2-2M34.5 18l-2-2" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="31.5" cy="9.5" r="2.4" fill="#d9ffb0"/>
+          </svg>
+        </span>
+        <span class="brand__name">Super<span>Vista</span></span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Navegación principal">
+        <a href="#coleccion">Colección</a>
+        <a href="#personaliza">Personaliza</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#resenas">Reseñas</a>
+        <a class="nav__cta" href="#personaliza">Diseñar los míos</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--ghost btn--sm header__design" href="#personaliza">Diseñar</a>
+        <button class="cart-btn" id="cartButton" type="button" aria-haspopup="dialog" aria-controls="cart">
+          <span class="sr-only" id="cartButtonLabel">Abrir carrito de compras</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5.5 8.5h13l-1 11a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8l-1-11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="cart-btn__count" id="cartCount" aria-hidden="true" hidden>0</span>
+        </button>
+        <button class="menu-btn" id="menuButton" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="pill" data-reveal>
+            <span class="pill__dot" aria-hidden="true"></span>
+            Nueva colección 2026 · Hecha a tu medida
+          </span>
+          <h1 data-reveal>Tus espejuelos,<br><span class="grad">tu universo.</span></h1>
+          <p class="hero__lead" data-reveal>Monturas personalizadas, lentes de última generación y un diseño que parece traído del futuro. La óptica que se adapta a ti.</p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--primary" href="#coleccion">
+              Explorar colección
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn--outline" href="#personaliza">Diseñar los míos</a>
+          </div>
+          <div class="hero__proof" data-reveal>
+            <div class="avatars" aria-hidden="true">
+              <span class="avatar avatar--a">V</span>
+              <span class="avatar avatar--b">D</span>
+              <span class="avatar avatar--c">C</span>
+            </div>
+            <div class="hero__proof-text">
+              <span class="stars" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              </span>
+              <p><strong>4.9/5</strong> · +12.000 miradas felices</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" data-reveal>
+          <div class="orbit orbit--one" aria-hidden="true"></div>
+          <div class="orbit orbit--two" aria-hidden="true"></div>
+          <div class="hero__halo" aria-hidden="true"></div>
+          <span class="chip chip--top">Drop 026</span>
+          <figure class="hero__frame">
+            <img src="assets/img/aurora.svg" alt="Espejuelos Aurora con montura redonda verde menta" width="800" height="800" fetchpriority="high">
+          </figure>
+          <div class="float-card float-card--scan">
+            <span class="float-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M8 10.5h8M9 14.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>Escaneo 3D</strong>
+              <span>Tu medida exacta</span>
+            </div>
+          </div>
+          <div class="float-card float-card--price">
+            <span class="float-card__dot" aria-hidden="true"></span>
+            <div>
+              <strong>$89</strong>
+              <span>Aurora · Redondo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Envío gratis desde $60</span><i>✳</i>
+          <span>Prueba virtual</span><i>✳</i>
+          <span>Lentes con filtro de luz azul</span><i>✳</i>
+          <span>Garantía de 2 años</span><i>✳</i>
+          <span>Bioacetato reciclado</span><i>✳</i>
+          <span>Ajustes gratis de por vida</span><i>✳</i>
+          <span>Envío gratis desde $60</span><i>✳</i>
+          <span>Prueba virtual</span><i>✳</i>
+          <span>Lentes con filtro de luz azul</span><i>✳</i>
+          <span>Garantía de 2 años</span><i>✳</i>
+          <span>Bioacetato reciclado</span><i>✳</i>
+          <span>Ajustes gratis de por vida</span><i>✳</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLECCIÓN -->
+    <section class="section" id="coleccion">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>La colección</span>
+            <h2 data-reveal>Diseñadas para tu<br>próxima versión.</h2>
+          </div>
+          <p class="section__intro" data-reveal>Seis siluetas, infinitas combinaciones. Todas incluyen lentes antirreflejo, filtro de luz azul y protección UV400.</p>
+        </div>
+
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por forma" data-reveal>
+          <button class="filter is-active" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+          <button class="filter" type="button" data-filter="redondos" aria-pressed="false">Redondos</button>
+          <button class="filter" type="button" data-filter="cuadrados" aria-pressed="false">Cuadrados</button>
+          <button class="filter" type="button" data-filter="cat-eye" aria-pressed="false">Cat-eye</button>
+          <button class="filter" type="button" data-filter="aviadores" aria-pressed="false">Aviador</button>
+          <button class="filter" type="button" data-filter="otros" aria-pressed="false">Otros</button>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+        <div class="collection__foot" data-reveal>
+          <p><span aria-hidden="true">◈</span> Cada par se ensambla a mano en nuestro taller.</p>
+          <a class="text-link" href="#personaliza">¿No encuentras tu forma? Diseña la tuya
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONALIZADOR -->
+    <section class="section section--studio" id="personaliza">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>El estudio</span>
+            <h2 data-reveal>Tu montura.<br>Hecha a tu manera.</h2>
+          </div>
+          <p class="section__intro" data-reveal>Elige la forma, el color y el tinte. Añade un grabado y mira el resultado en tiempo real.</p>
+        </div>
+
+        <div class="studio" data-reveal>
+          <div class="studio__preview">
+            <div class="studio__glow" aria-hidden="true"></div>
+            <span class="studio__label">Vista previa en vivo</span>
+            <div class="studio__stage" id="customPreview"></div>
+            <div class="studio__price">
+              <span>Tu diseño</span>
+              <strong id="customPrice">$99</strong>
+            </div>
+            <span class="studio__engraving" id="engravingBadge" hidden></span>
+          </div>
+
+          <div class="studio__panel">
+            <fieldset class="control">
+              <legend>01 · Forma de la montura</legend>
+              <div class="shape-options" id="shapeOptions"></div>
+            </fieldset>
+
+            <fieldset class="control">
+              <legend>02 · Color de la montura</legend>
+              <div class="swatch-row" id="frameOptions"></div>
+              <p class="control__value" id="frameName">Bosque</p>
+            </fieldset>
+
+            <fieldset class="control">
+              <legend>03 · Tinte del lente</legend>
+              <div class="swatch-row" id="tintOptions"></div>
+              <p class="control__value" id="tintName">Menta</p>
+            </fieldset>
+
+            <div class="control control--engraving">
+              <label for="engraving">
+                <span>04 · Grabado personalizado <em>+$9</em></span>
+              </label>
+              <div class="engraving-field">
+                <input id="engraving" type="text" maxlength="14" placeholder="Tu palabra favorita" autocomplete="off" spellcheck="false">
+                <span class="char-count"><span id="charCount">0</span>/14</span>
+              </div>
+            </div>
+
+            <button class="btn btn--primary btn--wide" id="addCustom" type="button">
+              Añadir al carrito
+              <span id="addCustomPrice">$99</span>
+            </button>
+            <p class="studio__note">Envío gratis · Recíbelos en 48 h · Devolución en 30 días</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section" id="beneficios">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <span class="eyebrow" data-reveal>Por qué SuperVista</span>
+          <h2 data-reveal>Tecnología que se siente ligera.</h2>
+          <p class="section__intro" data-reveal>Sin complicaciones, sin letra pequeña. Solo espejuelos que quieres usar todos los días.</p>
+        </div>
+
+        <div class="benefits">
+          <article class="benefit" data-reveal>
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M8 10.5h8M9 14.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Prueba virtual con IA</h3>
+            <p>Mide tu rostro desde el móvil y comprueba cómo te quedan antes de comprar.</p>
+          </article>
+          <article class="benefit benefit--dark" data-reveal>
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.3 4.9 5.4.7-4 3.8 1 5.4-4.7-2.6-4.7 2.6 1-5.4-4-3.8 5.4-.7L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Lentes de última generación</h3>
+            <p>Antirreflejo, filtro de luz azul y protección UV400 incluidos en todos los pares.</p>
+          </article>
+          <article class="benefit" data-reveal>
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 7.5h10v9h-10v-9ZM13.5 11h4l3 3v2.5h-7V11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <h3>Envío y devoluciones</h3>
+            <p>Entrega en 48 horas y 30 días para cambiar de opinión, sin preguntas.</p>
+          </article>
+          <article class="benefit" data-reveal>
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5l7 2.7v5.3c0 4.4-3 7.4-7 8.9-4-1.5-7-4.5-7-8.9V6.2l7-2.7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Garantía SuperVista</h3>
+            <p>Dos años de cobertura y ajustes gratis de por vida en cualquier tienda.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="section" id="resenas">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow" data-reveal>Reseñas</span>
+            <h2 data-reveal>Miradas que<br>hablan por nosotros.</h2>
+          </div>
+          <div class="rating-badge" data-reveal>
+            <strong>4.9</strong>
+            <div>
+              <span class="stars" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              </span>
+              <p>Basado en 2.348 reseñas verificadas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews">
+          <figure class="review" data-reveal>
+            <span class="stars" role="img" aria-label="5 de 5 estrellas">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+            </span>
+            <blockquote>“Pedí unas con grabado y llegaron en dos días. La calidad es de otro nivel: se sienten ligerísimas.”</blockquote>
+            <figcaption><span class="avatar avatar--a" aria-hidden="true">V</span><div><strong>Valeria R.</strong><span>San Juan, PR</span></div></figcaption>
+          </figure>
+          <figure class="review review--featured" data-reveal>
+            <span class="stars" role="img" aria-label="5 de 5 estrellas">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+            </span>
+            <blockquote>“La prueba virtual me salvó. Nunca había acertado tanto con una montura a la primera.”</blockquote>
+            <figcaption><span class="avatar avatar--b" aria-hidden="true">D</span><div><strong>Daniel M.</strong><span>Madrid, ES</span></div></figcaption>
+          </figure>
+          <figure class="review" data-reveal>
+            <span class="stars" role="img" aria-label="5 de 5 estrellas">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8L10 1.6Z"/></svg>
+            </span>
+            <blockquote>“Se sienten ligerísimas y el color menta es exactamente como en las fotos. Ya quiero otro par.”</blockquote>
+            <figcaption><span class="avatar avatar--c" aria-hidden="true">C</span><div><strong>Camila S.</strong><span>Ciudad de México, MX</span></div></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section section--cta">
+      <div class="container">
+        <div class="cta" data-reveal>
+          <div class="cta__deco cta__deco--one" aria-hidden="true"></div>
+          <div class="cta__deco cta__deco--two" aria-hidden="true"></div>
+          <div class="cta__copy">
+            <span class="eyebrow eyebrow--light">Club SuperVista</span>
+            <h2>Diseña la montura<br>que nadie más tiene.</h2>
+            <p>Únete y recibe un 10% en tu primer par, acceso anticipado a los drops y consejos de estilo visual.</p>
+          </div>
+          <form class="newsletter" id="newsletterForm" novalidate>
+            <label class="sr-only" for="newsletterEmail">Tu correo electrónico</label>
+            <div class="newsletter__field">
+              <input id="newsletterEmail" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
+              <button class="btn btn--lime" type="submit">Quiero mi 10%</button>
+            </div>
+            <p class="newsletter__note">Sin spam. Solo cosas bonitas y útiles.</p>
+            <p class="newsletter__status" id="newsletterStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="#top" aria-label="SuperVista, ir al inicio">
+          <span class="brand__mark brand__mark--light" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <circle cx="14" cy="21" r="7.5" stroke="currentColor" stroke-width="2.6"/>
+              <circle cx="27.5" cy="21" r="7.5" stroke="currentColor" stroke-width="2.6"/>
+              <path d="M21.4 21h.7M6 18l2-2M34.5 18l-2-2" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="31.5" cy="9.5" r="2.4" fill="#d9ffb0"/>
+            </svg>
+          </span>
+          <span class="brand__name">Super<span>Vista</span></span>
+        </a>
+        <p>Espejuelos personalizados con visión de futuro. Diseñados contigo, ensamblados a mano.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Instagram de SuperVista">Instagram</a>
+          <a href="#top" aria-label="TikTok de SuperVista">TikTok</a>
+          <a href="#top" aria-label="Pinterest de SuperVista">Pinterest</a>
+        </div>
+      </div>
+      <nav class="footer__col" aria-label="Explorar">
+        <h3>Explorar</h3>
+        <a href="#coleccion">Colección</a>
+        <a href="#personaliza">Personaliza</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#resenas">Reseñas</a>
+      </nav>
+      <nav class="footer__col" aria-label="Ayuda">
+        <h3>Ayuda</h3>
+        <a href="#top">Envíos</a>
+        <a href="#top">Devoluciones</a>
+        <a href="#top">Garantía</a>
+        <a href="#top">Contacto</a>
+      </nav>
+      <div class="footer__col footer__col--contact">
+        <h3>Hablemos</h3>
+        <a href="mailto:hola@supervista.app">hola@supervista.app</a>
+        <p>Lun–Vie · 9:00–19:00</p>
+        <span class="footer__badge">Hecho con visión ◈</span>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 SuperVista. Todos los derechos reservados.</p>
+      <div>
+        <a href="#top">Privacidad</a>
+        <a href="#top">Términos</a>
+        <a href="#top">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CARRITO -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart" id="cart" role="dialog" aria-modal="true" aria-label="Carrito de compras" aria-hidden="true">
+    <header class="cart__head">
+      <div>
+        <span class="eyebrow">Tu selección</span>
+        <h2>Carrito <span id="cartTitleCount">(0)</span></h2>
+      </div>
+      <button class="icon-btn" id="cartClose" type="button" aria-label="Cerrar carrito">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="cart__body" id="cartBody">
+      <div class="cart__items" id="cartItems"></div>
+    </div>
+
+    <footer class="cart__foot" id="cartFoot">
+      <div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">$0</strong></div>
+      <div class="cart__row"><span>Envío</span><strong id="cartShipping">—</strong></div>
+      <div class="cart__row cart__row--total"><span>Total</span><strong id="cartTotal">$0</strong></div>
+      <p class="cart__hint" id="cartHint">Te faltan $60 para el envío gratis.</p>
+      <button class="btn btn--primary btn--wide" id="checkout" type="button" disabled>Finalizar compra</button>
+      <p class="cart__secure">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 10V7.5a3.5 3.5 0 0 1 7 0V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        Pago seguro · Envío gratis desde $60
+      </p>
+    </footer>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

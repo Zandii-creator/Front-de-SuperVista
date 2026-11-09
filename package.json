@@ -1,0 +1,11 @@
+{
+  "name": "supervista",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SuperVista · espejuelos personalizados con diseño futurista",
+  "type": "module",
+  "scripts": {
+    "assets": "node tools/generate-assets.mjs",
+    "start": "node tools/serve.mjs"
+  }
+}
