@@ -2,7 +2,7 @@
 
 Landing page publicitaria de venta de espejuelos personalizados, con estética verde pastel y futurista. El front es **HTML + CSS + JavaScript vanilla** (módulos ES), sin frameworks, sin bundler y sin dependencias de runtime.
 
-Este archivo es el contexto que debe leerse al iniciar cualquier sesión de trabajo. Para el detalle funcional completo consulta [`docs/SPEC.md`](docs/SPEC.md); para el estado y los pendientes, [`docs/CHANGELOG.md`](docs/CHANGELOG.md).
+Este archivo es el contexto que debe leerse al iniciar cualquier sesión de trabajo. Para el detalle funcional completo consulta [`docs/SPEC.md`](docs/SPEC.md); para el estado y los pendientes, [`docs/CHANGELOG.md`](docs/CHANGELOG.md). Para el plan de escalabilidad (backend y TypeScript, **aún no implementado**), consulta [`docs/PLAN-ESCALABILIDAD.md`](docs/PLAN-ESCALABILIDAD.md).
 
 ## Estado actual
 
@@ -34,6 +34,7 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 | `tools/serve.mjs` | Servidor estático de desarrollo |
 | `docs/SPEC.md` | Especificación funcional y técnica detallada |
 | `docs/CHANGELOG.md` | Bitácora de cambios, decisiones y pendientes |
+| `docs/PLAN-ESCALABILIDAD.md` | Plan de migración a TypeScript, backend y workflow de cambios (propuesta) |
 | `nn.docx` | Archivo personal del usuario. **No rastrear, no borrar, no commitear** |
 
 ## Arquitectura y convenciones

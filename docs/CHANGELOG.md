@@ -2,6 +2,14 @@
 
 Registro de cambios, decisiones y pendientes. Añadir una entrada al terminar cada bloque de trabajo relevante.
 
+## 2026-11-11 — Plan de escalabilidad
+
+- Añadido `docs/PLAN-ESCALABILIDAD.md` con el plan de migración a TypeScript, backend, OpenSpec y workflow por sesiones.
+- Creada una copia de consulta en el escritorio: `SuperVista - Arquitectura y Workflow` (README, respuestas y prompt para la siguiente sesión).
+- `AGENTS.md` actualizado para referenciar el plan, marcado como **propuesta no implementada**.
+- Sin cambios de comportamiento: el front sigue siendo vanilla y el checkout simulado.
+- Commit pendiente; no se ha hecho push.
+
 ## 2026-11-09 — Documentación de contexto
 
 - Añadido `AGENTS.md` con el contexto operativo del proyecto: arquitectura, reglas de negocio, diseño, accesibilidad y flujo de Git.
