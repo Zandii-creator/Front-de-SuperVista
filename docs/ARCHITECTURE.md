@@ -1,6 +1,6 @@
 # SuperVista — Arquitectura del frontend
 
-> **Radiografía oficial del proyecto.** Última actualización: **11 de noviembre de 2026**.
+> **Radiografía oficial del proyecto.** Última actualización: **12 de noviembre de 2026**.
 > Alcance: frontend estático (`index.html`, `css/`, `js/`, `assets/`, `tools/`). No incluye el plan de backend, que vive en [`PLAN-ESCALABILIDAD.md`](PLAN-ESCALABILIDAD.md) y **no está implementado**.
 >
 > Este documento describe lo que existe hoy. Si cambia una vista, un dato, una interacción o la persistencia, hay que actualizarlo.
@@ -13,13 +13,14 @@ SuperVista es una **landing page de una sola página** construida con HTML, CSS 
 
 - **Pantallas:** una sola (`/`), con 6 secciones principales, header/footer globales y un carrito lateral con 3 estados.
 - **Datos:** catálogo y opciones del personalizador **hardcodeados** en JavaScript. No hay carpeta de datos ni API.
-- **Estado:** vive en memoria (`cart`, `studio`, `activeFilter`, `orderSuccess`) y se persiste solo el carrito en `localStorage`.
+- **Estado:** vive en memoria (`cart`, `studio`, `activeFilter`, `orderSuccess`) y se persisten el carrito y la preferencia de tema en `localStorage`.
+- **Temas:** claro y oscuro con `data-theme` en `<html>`, tokens semánticos y resolución previa al primer pintado.
 - **Backend:** **no existe**. No hay ni una llamada `fetch`, `XMLHttpRequest` ni `sendBeacon`. El checkout y el newsletter son simulaciones locales.
 - **Puntos de integración futura:** 18 interacciones inventariadas en la sección 5; 6 de ellas son flujos de negocio con posible llamada al backend.
 
 **Conclusión de la auditoría:** el front está bien organizado para su tamaño y tiene una accesibilidad y una estética cuidadas, pero **toda la lógica de negocio vive en el cliente**. Antes de cobrar de verdad hay que mover precios, stock, pedidos y correos al servidor.
 
-**Método de esta pasada:** lectura de los archivos de runtime, inventario de IDs y `data-*`, revisión de eventos y persistencia, `node --check` de los cuatro módulos y smoke test HTTP del servidor local (200 en `/`, CSS y JS). No se ejecutó Lighthouse ni una prueba manual en navegador en esta pasada.
+**Método de esta pasada:** lectura de los archivos de runtime, inventario de IDs y `data-*`, revisión de eventos y persistencia, `node --check` de los cuatro módulos y smoke test HTTP del servidor local (200 en `/`, CSS y JS). La auditoría inicial no ejecutó Lighthouse ni prueba manual; la implementación posterior del tema oscuro (12-11-2026) sí se verificó en navegador y con Lighthouse en ambos temas (ver `CHANGELOG.md`).
 
 ---
 
@@ -31,14 +32,15 @@ SuperVista es una **landing page de una sola página** construida con HTML, CSS 
 ┌─────────────────────────────────────────────────────────────────────┐
 │ CAPA 1 · PRESENTACIÓN (DOM)                                         │
 │ index.html                                                          │
-│ Estructura, copy, secciones, carrito, toast y metadatos SEO.        │
+│ Estructura, copy, secciones, carrito, toast, SEO y tema inicial.    │
 └───────────────┬─────────────────────────────────┬───────────────────┘
                 │ <link rel="stylesheet">         │ <script type="module">
 ┌───────────────▼───────────────────┐ ┌───────────▼───────────────────┐
 │ CAPA 2 · ESTILOS                  │ │ CAPA 3 · COMPORTAMIENTO       │
-│ css/styles.css                    │ │ js/app.js                     │
+│ css/styles.css                    │ │ js/app.js · js/theme.js       │
 │ Tokens, layout, componentes,      │ │ Estado, eventos, render,      │
-│ animaciones y responsive.         │ │ filtros, carrito y estudio.   │
+│ animaciones y responsive.         │ │ filtros, carrito, estudio y   │
+│                                   │ │ tema claro/oscuro.            │
 └───────────────────────────────────┘ └───────────┬───────────────────┘
                                                   │ import { ... }
                                       ┌───────────▼───────────────────┐
@@ -56,7 +58,8 @@ SuperVista es una **landing page de una sola página** construida con HTML, CSS 
 
 ┌─────────────────────────────────────────────────────────────────────┐
 │ CAPA 6 · PERSISTENCIA LOCAL                                         │
-│ localStorage["supervista.cart.v1"]  ← solo el carrito               │
+│ localStorage["supervista.cart.v1"]  ← carrito                       │
+│ localStorage["supervista.theme.v1"] ← preferencia de tema           │
 └─────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -97,13 +100,16 @@ Futuro (no implementado):
 ```text
 index.html
 ├── css/styles.css
+├── script inline de tema ──► localStorage["supervista.theme.v1"]
 └── js/app.js ──────────────► js/frames.js
-                               ▲
+    │                          ▲
+    └──────────────────────────┴─► js/theme.js ──► localStorage["supervista.theme.v1"]
 tools/generate-assets.mjs ─────┘
 tools/serve.mjs ──► sirve todo el árbol por HTTP
 
-js/app.js ──► localStorage
+js/app.js ──► localStorage["supervista.cart.v1"]
 js/app.js ──► IDs y data-* del DOM de index.html (contrato implícito)
+js/theme.js ──► [data-theme-toggle], meta[name="theme-color"] y matchMedia
 ```
 
 No hay imports de CSS desde JS, ni JS desde HTML salvo `js/app.js`, ni dependencias de runtime instaladas por npm.
@@ -123,11 +129,12 @@ EspejuelosSuper/
 ├── nn.docx                     Archivo personal; NO rastrear ni commitear
 │
 ├── css/
-│   └── styles.css              Sistema visual completo (2.587 líneas)
+│   └── styles.css              Sistema visual completo (2.888 líneas)
 │
 ├── js/
-│   ├── app.js                  Lógica de la landing (700 líneas)
-│   └── frames.js               Datos gráficos + renderizador SVG (187 líneas)
+│   ├── app.js                  Lógica de la landing (704 líneas)
+│   ├── theme.js                Tema claro/oscuro y persistencia (93 líneas)
+│   └── frames.js               Datos gráficos + renderizador SVG (188 líneas)
 │
 ├── assets/
 │   └── img/
@@ -164,7 +171,7 @@ EspejuelosSuper/
 |---|---|---|---|
 | `index.html` | Presentación | Toda la estructura y el copy de la landing | Header, hero, colección, estudio, beneficios, reseñas, CTA, footer, carrito y toast |
 | `css/` | Estilos | Sistema visual, componentes y responsive | `styles.css` |
-| `js/` | Comportamiento y dominio | Datos simulados, estado, eventos y renderizado | `app.js`, `frames.js` |
+| `js/` | Comportamiento y dominio | Datos simulados, estado, eventos, renderizado y tema | `app.js`, `theme.js`, `frames.js` |
 | `assets/img/` | Recursos estáticos | Imágenes de producto y favicon | 7 SVG **generados**; no editar a mano |
 | `tools/` | Tooling de desarrollo | Servir el sitio y regenerar assets | `serve.mjs`, `generate-assets.mjs` |
 | `openspec/` | Workflow de cambios | Contexto, specs de comportamiento y propuestas | `config.yaml`, `specs/`, `changes/` |
@@ -186,9 +193,10 @@ EspejuelosSuper/
 |---|---|---|---|
 | Presentación | `index.html` | Semántica, copy, landmarks, IDs y SEO | CSS, `app.js` |
 | Estilos | `css/styles.css` | Tokens, layout, componentes, estados, animaciones y breakpoints | Nada |
-| Comportamiento/UI | `js/app.js` | Estado, eventos, filtros, carrito, personalizador, menú y newsletter | `frames.js`, DOM, `localStorage` |
+| Comportamiento/UI | `js/app.js` | Estado, eventos, filtros, carrito, personalizador, menú y newsletter | `frames.js`, `theme.js`, DOM, `localStorage` |
+| Tema | `js/theme.js` | Resolver, aplicar, alternar y persistir el tema; sincronizar controles y `matchMedia` | DOM, `localStorage` |
 | Dominio gráfico | `js/frames.js` | Formas, colores, tintes y generación de SVG | Nada (reutilizable en navegador y Node) |
-| Persistencia | `localStorage` | Guardar y recuperar el carrito | Navegador |
+| Persistencia | `localStorage` | Guardar y recuperar el carrito y la preferencia de tema | Navegador |
 | Assets | `assets/img/*.svg` | Arte de producto y favicon | `generate-assets.mjs` |
 | Tooling | `tools/*.mjs` | Servidor local y regeneración de imágenes | Node, `frames.js` |
 | Workflow | `openspec/`, `.agents/skills/` | Planificar cambios y mantener specs verificables | CLI OpenSpec (global) |
@@ -209,6 +217,7 @@ Estados de interfaz que cambian lo que se ve:
 | Estado | Dónde | Qué cambia |
 |---|---|---|
 | Header con scroll | Global | `.is-scrolled` a partir de 8 px de scroll |
+| Tema claro/oscuro | Global (`<html>`) | `data-theme`, `color-scheme`, `meta[theme-color]`, tokens semánticos y controles `aria-pressed` |
 | Menú móvil abierto | Header ≤ 900 px | `.is-open`, `aria-expanded`, panel desplegable |
 | Filtro activo | Colección | `aria-pressed` y re-render de tarjetas |
 | Carrito vacío | Carrito | Icono, mensaje y CTA “Explorar la colección” |
@@ -224,7 +233,7 @@ Estados de interfaz que cambian lo que se ve:
 |---|---|---|---|---|
 | 1 | Skip link | `.skip-link` | Enlace “Saltar al contenido” | HTML |
 | 2 | Atmósfera | `.page-glow` | Dos halos decorativos fijos | HTML + CSS |
-| 3 | Header | `#siteHeader` | Marca, nav de 5 enlaces, botón “Diseñar”, botón de carrito con contador, botón hamburguesa | HTML + JS |
+| 3 | Header | `#siteHeader` | Marca, nav de 5 enlaces, botón “Diseñar”, conmutador de tema, botón de carrito con contador, botón hamburguesa | HTML + JS |
 | 4 | Hero | `.hero` | Píldora “Nueva colección”, H1, lead, 2 CTAs, prueba social (avatares + estrellas), visual con órbitas, halo, chip “Drop 026”, imagen Aurora y 2 tarjetas flotantes (“Escaneo 3D”, precio) | HTML + CSS |
 | 5 | Marquee | `.marquee` | Cinta infinita con 6 ventajas duplicadas | HTML + CSS |
 | 6 | Colección | `#coleccion` | Eyebrow, H2, intro, 6 filtros, grid de 6 tarjetas, pie con enlace al estudio | HTML + `renderProducts()` |
@@ -286,7 +295,8 @@ Cada línea muestra miniatura, nombre, detalle, control de cantidad `− / +`, p
 | `SHIPPING_COST` | `6` | Envío por debajo del umbral (USD) |
 | `CUSTOM_BASE` | `99` | Montura personalizada (USD) |
 | `ENGRAVING_COST` | `9` | Grabado personalizado (USD) |
-| `CART_KEY` | `"supervista.cart.v1"` | Clave de `localStorage` |
+| `CART_KEY` | `"supervista.cart.v1"` | Clave de `localStorage` del carrito |
+| `THEME_KEY` | `"supervista.theme.v1"` | Clave de `localStorage` del tema (`light` / `dark`) |
 | Máximo por línea | `9` | Se aplica al cargar, al añadir y en los botones |
 
 ### 4.3 Modelos de datos
@@ -345,13 +355,16 @@ Pedido: **no hay modelo**. El checkout solo genera un string `SV-#####` en la va
 | `toastTimer` | `number \| null` | Temporizador del toast |
 | `lastFocused` | `Element \| null` | Restauración de foco al cerrar el carrito |
 
+`js/theme.js` mantiene además su propio estado derivado de `document.documentElement.dataset.theme` y del `localStorage`; no se mezcla con el estado del carrito.
+
 ### 4.5 Persistencia
 
-- Se guarda **solo el carrito** en `localStorage` bajo `supervista.cart.v1`.
-- Al cargar se valida que sea un array, que cada ítem tenga `key`, precio finito y `qty > 0`; la cantidad se limita a `1–9`.
-- Si `localStorage` falla (modo privado, cuota llena), el carrito sigue funcionando en memoria; el error se ignora.
+- Se guardan **el carrito** (`supervista.cart.v1`) y la **preferencia de tema** (`supervista.theme.v1`) en `localStorage`.
+- El tema guardado solo se acepta si vale `light` o `dark`; sin valor válido manda `prefers-color-scheme`. El script inline de `<head>` resuelve el tema antes del primer pintado para evitar destellos.
+- Al cargar el carrito se valida que sea un array, que cada ítem tenga `key`, precio finito y `qty > 0`; la cantidad se limita a `1–9`.
+- Si `localStorage` falla (modo privado, cuota llena), el carrito y el tema siguen funcionando en memoria; el error se ignora.
 - Las miniaturas personalizadas se guardan como **data URI SVG** dentro del propio ítem. Son el principal riesgo de cuota.
-- No se persisten: filtro, selección del personalizador, estado del pedido, correo del newsletter ni preferencias.
+- No se persisten: filtro, selección del personalizador, estado del pedido, correo del newsletter ni otras preferencias.
 
 ---
 
@@ -427,6 +440,8 @@ Carrito:     cart · overlay · cartClose · cartItems · cartFoot · cartBody
              cartTitleCount
 Newsletter:  newsletterForm · newsletterEmail · newsletterStatus
 Anclas:      top · coleccion · personaliza · beneficios · resenas
+Tema:        [data-theme] en <html> · [data-theme-toggle] · [data-theme-label]
+             meta[name="theme-color"]
 ```
 
 Atributos de comportamiento:
@@ -442,6 +457,9 @@ Atributos de comportamiento:
 | `data-remove` | Eliminar línea del carrito |
 | `data-close-cart` | Cerrar carrito desde estados vacío/éxito |
 | `data-reveal` | Animación de aparición al hacer scroll |
+| `data-theme` | Tema activo en `<html>` (`light` / `dark`) |
+| `data-theme-toggle` | Botón que alterna el tema (header y menú móvil) |
+| `data-theme-label` | Texto visible de la etiqueta dinámica del botón de tema |
 
 ---
 
@@ -456,7 +474,8 @@ sections → collection → studio/customizer → benefits → reviews
 cta → footer → cart → toast → reveal → animations → responsive
 ```
 
-- **Tokens:** colores, sombras, radios, easing y fuentes en `:root`.
+- **Tokens:** dos capas en `:root`: **paleta de marca** (`--ink`, `--mint`, `--lime`, `--paper`…) y **tokens semánticos** (`--surface`, `--surface-raised`, `--text`, `--text-muted`, `--border`, `--accent`, `--on-accent`, sombras). Los componentes usan la capa semántica.
+- **Tema oscuro:** `[data-theme="dark"]` redefine solo los tokens semánticos y declara `color-scheme: dark`. La transición de 300 ms se activa con la clase `theme-transition` y se omite con `prefers-reduced-motion`.
 - **Contenedor:** máximo `1180 px`, padding `24 px` (`18 px` en móvil).
 - **Breakpoints:** `1024`, `900`, `640`, `380` px + `prefers-reduced-motion`.
 - **Patrón:** clases BEM (`bloque__elemento--modificador`), estados con `.is-*`.
@@ -472,6 +491,7 @@ cta → footer → cart → toast → reveal → animations → responsive
 - `frames.js` no depende del DOM ni del navegador: se reutiliza en Node para generar assets.
 - Assets 100 % locales y reproducibles; no hay dependencia de imágenes externas.
 - Accesibilidad cuidada: landmarks, skip link, `aria-pressed`, foco atrapado, `inert`, `Escape`, `aria-live`, `alt` descriptivos y contraste.
+- Tema claro/oscuro sin destello inicial, con preferencia persistida, respeto a `prefers-color-scheme` y tokens semánticos que evitan duplicar reglas por tema.
 - Validación defensiva al hidratar el carrito y `escapeHtml()` en los textos dinámicos del carrito.
 - Persistencia tolerante a fallos: si `localStorage` no está disponible, el carrito sigue en memoria.
 - Sin dependencias de runtime; única petición externa: Google Fonts.
@@ -488,6 +508,7 @@ cta → footer → cart → toast → reveal → animations → responsive
 | **Media** | Sin tests, lint, tipado ni CI | Regresiones silenciosas al crecer | Vitest/Playwright + TypeScript + GitHub Actions |
 | **Media** | `og:image` con ruta relativa | Algunos rastreadores no generan preview | URL absoluta al publicar |
 | **Media** | Añadir con cantidad ya en 9 muestra “añadido” aunque no incremente | Feedback engañoso | Avisar “máximo 9 por artículo” |
+| **Baja** | La clave `supervista.theme.v1` está duplicada en el script inline y en `js/theme.js` | Un cambio futuro en una sola copia rompería la resolución previa al pintado | Mantener ambas copias sincronizadas y documentarlo junto a la constante |
 | **Baja** | `item.img` se inserta sin escapar en el carrito | Si se manipula `localStorage`, se puede romper el atributo `src` | Escapar o validar el valor |
 | **Baja** | `#cartBody` y algunos selectores existen pero no se usan | Ruido menor | Limpiar o documentar |
 | **Baja** | Reseñas, rating y prueba social hardcodeados | No son datos reales | Mover a datos/API si se publica |
@@ -516,7 +537,8 @@ cta → footer → cart → toast → reveal → animations → responsive
 | Conectar backend | Nuevo `js/api.js` (propuesto) + `js/app.js` | Centralizar `fetch`, eliminar autoridad de precios del cliente, manejar errores/carga |
 | Cambio no trivial | `openspec/changes/<cambio>/` | Explorar, proponer, revisar, aplicar y archivar con OpenSpec |
 | Cambiar precios | `js/app.js` | Constantes y `PRODUCTS`; actualizar `SPEC.md` y `AGENTS.md` |
-| Cambiar paleta | `css/styles.css` | Variables de `:root`; evitar valores mágicos |
+| Cambiar paleta | `css/styles.css` | Editar la paleta de marca en `:root` o los tokens semánticos en `:root` y `[data-theme="dark"]`; evitar valores mágicos |
+| Añadir un tema | `css/styles.css`, `js/theme.js`, `index.html` | Definir un bloque `[data-theme="..."]` con la capa semántica, ampliar la resolución y el toggle, y actualizar el script inline si cambia la clave |
 
 ---
 
@@ -528,10 +550,11 @@ Actualizar `docs/ARCHITECTURE.md` cuando:
 2. Cambie el modelo de `PRODUCTS`, del carrito o del personalizador.
 3. Se añada una interacción que pueda enviar datos.
 4. Se conecte un endpoint real o se sustituya una simulación.
-5. Cambie la clave o el formato de `localStorage`.
+5. Cambie la clave o el formato de `localStorage` (carrito o tema).
 6. Se añada una carpeta, herramienta o dependencia.
 7. Cambien los breakpoints o la estructura de capas.
-8. Cambie el workflow de OpenSpec, la ubicación de las specs o las skills generadas.
+8. Cambie un token semántico, la paleta oscura o el mecanismo de resolución del tema.
+9. Cambie el workflow de OpenSpec, la ubicación de las specs o las skills generadas.
 
 ---
 

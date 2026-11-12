@@ -5,7 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SuperVista · Espejuelos personalizados del futuro</title>
   <meta name="description" content="Monturas personalizadas, lentes de última generación y diseño futurista. Diseña tus espejuelos SuperVista y recíbelos en 48 horas.">
-  <meta name="theme-color" content="#07251c">
+  <meta name="theme-color" content="#f4fdf9">
+  <script>
+    (function () {
+      var key = "supervista.theme.v1";
+      var theme = null;
+      try {
+        var saved = localStorage.getItem(key);
+        if (saved === "light" || saved === "dark") theme = saved;
+      } catch (error) {}
+      if (!theme) {
+        theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.setAttribute("content", theme === "dark" ? "#041a14" : "#f4fdf9");
+      }
+    })();
+  </script>
   <meta property="og:title" content="SuperVista · Espejuelos personalizados del futuro">
   <meta property="og:description" content="Monturas hechas a tu medida con diseño futurista. Elige forma, color, tinte y grabado en tiempo real.">
   <meta property="og:type" content="website">
@@ -41,11 +61,20 @@
         <a href="#personaliza">Personaliza</a>
         <a href="#beneficios">Beneficios</a>
         <a href="#resenas">Reseñas</a>
+        <button class="nav__theme" data-theme-toggle type="button" aria-pressed="false" aria-label="Activar modo oscuro">
+          <svg class="theme-btn__sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <svg class="theme-btn__moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <span data-theme-label>Activar modo oscuro</span>
+        </button>
         <a class="nav__cta" href="#personaliza">Diseñar los míos</a>
       </nav>
 
       <div class="header__actions">
         <a class="btn btn--ghost btn--sm header__design" href="#personaliza">Diseñar</a>
+        <button class="theme-btn" data-theme-toggle type="button" aria-pressed="false" aria-label="Activar modo oscuro">
+          <svg class="theme-btn__sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <svg class="theme-btn__moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </button>
         <button class="cart-btn" id="cartButton" type="button" aria-haspopup="dialog" aria-controls="cart">
           <span class="sr-only" id="cartButtonLabel">Abrir carrito de compras</span>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

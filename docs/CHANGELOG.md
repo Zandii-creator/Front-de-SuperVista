@@ -2,6 +2,20 @@
 
 Registro de cambios, decisiones y pendientes. Añadir una entrada al terminar cada bloque de trabajo relevante.
 
+## 2026-11-12 — Modo oscuro completo
+
+- Añadido tema oscuro para toda la landing: header, hero, colección, personalizador, beneficios, reseñas, newsletter, footer, menú móvil, carrito, checkout y toast.
+- Introducida una capa de tokens semánticos en `:root` (`--surface`, `--text`, `--border`, `--accent`, sombras, etc.) sobre la paleta de marca existente; `[data-theme="dark"]` redefine solo esa capa y declara `color-scheme: dark`.
+- Nuevo `js/theme.js`: resolución del tema, alternancia, persistencia en `supervista.theme.v1`, sincronización de controles y escucha de `prefers-color-scheme`.
+- Script inline en `<head>` para resolver el tema antes del primer pintado y evitar destellos; `meta[name="theme-color"]` se actualiza entre `#f4fdf9` y `#041a14`.
+- Añadidos dos controles `[data-theme-toggle]` (header y menú móvil) con `aria-pressed` y etiqueta dinámica “Activar modo oscuro” / “Activar modo claro”.
+- Transición de tema de 300 ms acotada por `theme-transition` y desactivada con `prefers-reduced-motion`.
+- Verificado contraste de texto pequeño ≥ 4.5:1 en ambos temas, navegación por teclado, foco atrapado del carrito, `Escape`, persistencia tras recarga y convivencia con el carrito.
+- Verificado a 1024, 900, 640 y 380 px sin desbordes horizontales ni bloques con el tema anterior.
+- Lighthouse en ambos temas: 100 en accesibilidad, buenas prácticas y SEO.
+- Actualizados `README.md`, `docs/SPEC.md`, `docs/ARCHITECTURE.md`, `docs/CHANGELOG.md` y `AGENTS.md`. Sin cambios en `assets/img/*.svg`.
+- Cambio OpenSpec `add-dark-mode` archivado en `openspec/changes/archive/2026-11-12-add-dark-mode/`; la spec `theme-mode` pasa a `openspec/specs/theme-mode/`.
+
 ## 2026-11-11 — Instalación y configuración de OpenSpec
 
 - Instalado el CLI global `@fission-ai/openspec` 2.0.0 (requiere Node ≥ 22.12).

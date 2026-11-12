@@ -46,7 +46,8 @@ Las skills disponibles en OpenCode son `openspec-explore`, `openspec-propose`, `
 - **Colección filtrable** con 6 monturas y arte SVG generado localmente.
 - **Personalizador en vivo**: forma, color de montura, tinte, grabado y precio dinámico.
 - **Carrito funcional**: añadir, cantidades, eliminar, envío gratis desde $60, total y checkout simulado.
-- **Persistencia** del carrito en `localStorage` (incluye miniaturas de diseños personalizados).
+- **Modo claro y oscuro** con detección de `prefers-color-scheme`, conmutador en header y menú móvil, y preferencia persistida.
+- **Persistencia** del carrito y del tema en `localStorage` (incluye miniaturas de diseños personalizados).
 - **Diseño responsive** con menú móvil, animaciones de scroll y respeto por `prefers-reduced-motion`.
 - **Accesibilidad**: navegación por teclado, foco atrapado en el carrito, etiquetas ARIA y contraste verificado (Lighthouse 100 en accesibilidad, buenas prácticas y SEO).
 
@@ -56,6 +57,7 @@ Las skills disponibles en OpenCode son `openspec-explore`, `openspec-propose`, `
 index.html                 Página completa
 css/styles.css             Sistema visual y responsive
 js/app.js                  Productos, filtros, carrito y personalizador
+js/theme.js                Tema claro/oscuro y persistencia
 js/frames.js               Formas, colores y renderizador SVG de monturas
 assets/img/*.svg           Imágenes de producto y favicon
 tools/generate-assets.mjs  Generador de las imágenes SVG

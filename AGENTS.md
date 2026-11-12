@@ -8,7 +8,7 @@ Los cambios no triviales se planifican con **OpenSpec** antes de escribir códig
 
 ## Estado actual
 
-- Landing de una sola página: hero, colección filtrable, personalizador en vivo, beneficios, reseñas, newsletter, footer, carrito lateral y checkout simulado.
+- Landing de una sola página: hero, colección filtrable, personalizador en vivo, beneficios, reseñas, newsletter, footer, carrito lateral y checkout simulado. Incluye modo claro/oscuro con persistencia.
 - Repositorio: `https://github.com/Zandii-creator/Front-de-SuperVista` (privado). Rama `main`, remoto `origin`.
 - Último commit publicado: `33450f2` — landing completa con personalizador y carrito.
 - El checkout es **una simulación**: genera un pedido `SV-#####` y vacía el carrito. No hay pasarela de pago ni backend.
@@ -34,6 +34,7 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 | `index.html` | Toda la estructura y el copy de la landing, carrito y toast |
 | `css/styles.css` | Sistema visual, componentes, animaciones y responsive |
 | `js/app.js` | Catálogo, filtros, carrito, personalizador, menú móvil y formulario |
+| `js/theme.js` | Tema claro/oscuro: resolución inicial, alternancia, persistencia y sincronización de controles |
 | `js/frames.js` | Formas (`SHAPES`), colores (`FRAME_COLORS`), tintes (`TINTS`) y renderizador SVG |
 | `assets/img/*.svg` | Imágenes de producto y favicon **generadas**; no editarlas a mano |
 | `tools/generate-assets.mjs` | Genera las imágenes de producto con `buildGlassesSVG` |
@@ -78,6 +79,7 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 - Radios: 18 px (controles), 28 px (tarjetas), 38 px (paneles grandes).
 - Contenedor máximo: 1180 px. Breakpoints en 1024, 900, 640 y 380 px.
 - Estética: glassmorphism, brillos mint, retícula sutil, órbitas y microanimaciones. Respetar `prefers-reduced-motion`.
+- Temas: `data-theme="light|dark"` en `<html>`; el tema oscuro redefine solo los tokens semánticos. La preferencia manual se guarda en `supervista.theme.v1`; sin elección manda `prefers-color-scheme`.
 - Mantener el estilo existente: no introducir colores ajenos a la paleta sin justificarlo.
 
 ## Accesibilidad

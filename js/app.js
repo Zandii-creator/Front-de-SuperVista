@@ -9,6 +9,9 @@ import {
   buildGlassesSVG,
   shapeIcon,
 } from "./frames.js";
+import { initTheme } from "./theme.js";
+
+initTheme();
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];

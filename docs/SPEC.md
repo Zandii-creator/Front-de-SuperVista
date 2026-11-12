@@ -57,6 +57,31 @@ Los enlaces internos del header y footer usan anclas a estas secciones. El heade
 | Acento accesible | `#1b6f53` | Texto pequeño sobre fondos claros |
 | Panel oscuro | `#0f4a38` → `#07251c` | Gradientes del estudio |
 
+### Tema claro y oscuro
+
+El tema se representa con `data-theme="light"` o `data-theme="dark"` en `<html>`. Un script inline en `<head>` resuelve el tema antes del primer pintado:
+
+1. Lee `localStorage["supervista.theme.v1"]`; si vale `light` o `dark`, lo aplica.
+2. Si no hay elección guardada, usa `prefers-color-scheme`.
+3. Actualiza `meta[name="theme-color"]` (`#f4fdf9` en claro, `#041a14` en oscuro).
+
+`js/theme.js` mantiene la alternancia, la persistencia y la sincronización de los controles; también escucha cambios del sistema mientras no haya elección manual. Los botones `[data-theme-toggle]` viven en el header y en el menú móvil, usan `aria-pressed` y una etiqueta dinámica (“Activar modo oscuro” / “Activar modo claro”).
+
+Los colores se organizan en dos capas: la **paleta de marca** de la tabla y los **tokens semánticos** (`--surface`, `--surface-raised`, `--text`, `--text-muted`, `--border`, `--accent`, etc.). El tema oscuro redefine solo la capa semántica:
+
+| Token | Claro | Oscuro | Uso |
+|---|---|---|---|
+| `--surface` | `#f4fdf9` | `#041a14` | Fondo de página |
+| `--surface-raised` | `#ffffff` | `#0b2f26` | Tarjetas, carrito y paneles |
+| `--surface-sunken` | `#f7fdfa` | `#061f18` | Controles hundidos |
+| `--text` | `#07251c` | `#eafff5` | Texto principal |
+| `--text-muted` | `#527065` | `#a9c6ba` | Texto secundario |
+| `--border` | `rgba(7, 37, 28, 0.1)` | `rgba(185, 245, 217, 0.14)` | Bordes |
+| `--accent` | `#0f6b4f` | `#7ce8b8` | Enlaces y acentos |
+| `--surface-inverse` | `#07251c` | `#0b2f26` | Paneles oscuros |
+
+El cambio de tema usa una transición de 300 ms acotada por la clase `theme-transition`; con `prefers-reduced-motion: reduce` se aplica de inmediato. Las imágenes de producto no cambian entre temas.
+
 ### Tipografía
 
 - **Space Grotesk** (400–700): títulos, precios, marca.
@@ -67,7 +92,7 @@ Los enlaces internos del header y footer usan anclas a estas secciones. El heade
 ### Formas y superficies
 
 - Radios: `18px` controles, `28px` tarjetas, `38px` paneles grandes, `999px` píldoras.
-- Bordes: `rgba(7, 37, 28, 0.1)`.
+- Bordes: token `--border` (`rgba(7, 37, 28, 0.1)` en claro, verde translúcido en oscuro).
 - Sombras suaves de gran difusión; glassmorphism en header, tarjetas flotantes y carrito.
 - Retícula de fondo en el estudio y la sección CTA, enmascarada radialmente.
 - Microanimaciones: flotación, órbitas, marquee, aparición de tarjetas, pulso del punto “nuevo”.
@@ -216,6 +241,7 @@ El SVG usa un `viewBox="0 0 800 800"`, dos lentes simétricos (el derecho se ref
 - Menú móvil (≤ 900 px): botón hamburguesa con `aria-expanded`, panel desplegable, cierre al pulsar un enlace, fuera del panel, con `Escape` o al volver a escritorio.
 - El botón del carrito incluye un nombre accesible dinámico: “Abrir carrito, N artículos”.
 - El contador visual está oculto a tecnologías de asistencia (`aria-hidden`).
+- El conmutador de tema aparece como botón circular en el header de escritorio y como fila con icono y texto dentro del menú móvil. Ambos comparten `[data-theme-toggle]`, `aria-pressed` y etiqueta dinámica.
 
 ## 9. Animaciones y movimiento
 
@@ -224,13 +250,15 @@ El SVG usa un `viewBox="0 0 800 800"`, dos lentes simétricos (el derecho se ref
 - Hero: flotación, órbitas y halo; tarjetas flotantes con movimiento suave.
 - Marquee infinito con contenido duplicado.
 - Toast con transición desde arriba.
+- Cambio de tema con transición de 300 ms limitada por `theme-transition`; no se aplica si el usuario pide movimiento reducido.
 - Todo se desactiva prácticamente con `prefers-reduced-motion: reduce`.
 
 ## 10. Accesibilidad
 
 - `lang="es"`, skip link, landmarks (`header`, `main`, `footer`, `nav`), jerarquía de encabezados.
-- Foco visible global (`:focus-visible`, 2 px, `#2f9e78`).
-- Contraste de texto pequeño ≥ 4.5:1; el acento `#1b6f53` se usa para textos pequeños.
+- Foco visible global (`:focus-visible`, 2 px, token `--focus`: `#2f9e78` en claro y `#9ff3cf` en oscuro).
+- Contraste de texto pequeño ≥ 4.5:1 en ambos temas; el acento `--accent-strong` (`#1b6f53` en claro) se usa para textos pequeños.
+- El conmutador de tema anuncia su estado con `aria-pressed` y una etiqueta que describe la acción (“Activar modo oscuro” / “Activar modo claro”); es operable con `Enter` y `Espacio`.
 - Botones de forma/filtros con `aria-pressed`; swatches con `aria-label` y `aria-pressed`; iconos decorativos con `aria-hidden`.
 - Carrito como `role="dialog"`, `aria-modal="true"`, foco atrapado y restaurado, `inert` al cerrar.
 - Estrellas de reseñas con `role="img"` y etiqueta “5 de 5 estrellas”.
@@ -250,10 +278,11 @@ El SVG usa un `viewBox="0 0 800 800"`, dos lentes simétricos (el derecho se ref
 ## 12. Estructura técnica
 
 ```text
-index.html
+index.html        ← incluye el script inline que resuelve el tema antes del pintado
 css/styles.css
 js/frames.js      ← sin dependencias; puede importarse desde Node
-js/app.js         ← importa frames.js
+js/theme.js       ← tema claro/oscuro y persistencia
+js/app.js         ← importa frames.js y theme.js
 assets/img/*.svg
 tools/generate-assets.mjs
 tools/serve.mjs
@@ -270,7 +299,7 @@ tools/serve.mjs
 - `title`: “SuperVista · Espejuelos personalizados del futuro”.
 - `meta description` orientada a conversión.
 - Open Graph básico (`og:title`, `og:description`, `og:type`, `og:image` con ruta relativa).
-- `theme-color`, favicon SVG, `lang="es"`, viewport correcto.
+- `theme-color` dinámico según el tema (`#f4fdf9` / `#041a14`), favicon SVG, `lang="es"`, viewport correcto.
 - Una sola `h1`; secciones con `h2` y tarjetas con `h3`.
 
 ## 14. Limitaciones conocidas
