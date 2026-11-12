@@ -1,0 +1,45 @@
+schema: spec-driven
+
+context: |
+  Language: Spanish
+  All artifacts must be written in Spanish.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Project: SuperVista, a single-page advertising landing for custom eyeglasses.
+  Current stack: static HTML, CSS and vanilla JavaScript ES modules. No framework,
+  no bundler, no test runner and no backend. Do not add tooling or dependencies
+  unless the approved change explicitly asks for it.
+
+  Current baseline: the catalog, cart and customizer run entirely in the browser;
+  the checkout and newsletter are simulations. Treat this as the behavior to
+  describe, not as a finished production system.
+
+  Read before proposing: AGENTS.md (operating rules), docs/ARCHITECTURE.md
+  (current layers and integration points), docs/SPEC.md (functional detail) and
+  docs/CHANGELOG.md (recent state). Do not restate their business rules here;
+  reference the relevant document instead.
+
+  Changes should be small and verifiable. Include affected files, out-of-scope
+  items and a manual or automated verification step in each proposal.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

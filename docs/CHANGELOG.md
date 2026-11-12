@@ -2,6 +2,25 @@
 
 Registro de cambios, decisiones y pendientes. Añadir una entrada al terminar cada bloque de trabajo relevante.
 
+## 2026-11-11 — Instalación y configuración de OpenSpec
+
+- Instalado el CLI global `@fission-ai/openspec` 2.0.0 (requiere Node ≥ 22.12).
+- Ejecutado `openspec init --tools opencode --language Spanish --no-animation`.
+- Creados `openspec/config.yaml`, `openspec/specs/`, `openspec/changes/` y `.agents/skills/openspec-*`.
+- Configurado el contexto de `openspec/config.yaml` con el stack, el estado actual y los documentos de referencia, sin duplicar las reglas de `AGENTS.md`.
+- Documentado el workflow en `README.md`, `AGENTS.md` y `docs/ARCHITECTURE.md`.
+- Sin cambios de comportamiento: el front sigue siendo vanilla y el checkout simulado.
+- `openspec validate --all` pasa sin elementos (las specs están vacías a propósito).
+
+## 2026-11-11 — Auditoría de arquitectura del frontend
+
+- Añadido `docs/ARCHITECTURE.md` con la radiografía oficial: capas, carpetas, vistas, componentes, modelos de datos, persistencia y puntos de contacto con un backend futuro.
+- Documentado que hoy no existe ninguna llamada HTTP: el checkout y el newsletter son simulaciones locales.
+- Inventariados los 18 puntos de interacción y los endpoints propuestos (no implementados).
+- Registrados riesgos de deuda técnica, entre ellos la autoridad de precios en el cliente y las miniaturas en `localStorage`.
+- `README.md` y `AGENTS.md` actualizados para enlazar el nuevo documento.
+- Sin cambios de comportamiento: solo documentación.
+
 ## 2026-11-11 — Plan de escalabilidad
 
 - Añadido `docs/PLAN-ESCALABILIDAD.md` con el plan de migración a TypeScript, backend, OpenSpec y workflow por sesiones.

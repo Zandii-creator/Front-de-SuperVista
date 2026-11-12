@@ -2,7 +2,9 @@
 
 Landing page publicitaria de venta de espejuelos personalizados, con estética verde pastel y futurista. El front es **HTML + CSS + JavaScript vanilla** (módulos ES), sin frameworks, sin bundler y sin dependencias de runtime.
 
-Este archivo es el contexto que debe leerse al iniciar cualquier sesión de trabajo. Para el detalle funcional completo consulta [`docs/SPEC.md`](docs/SPEC.md); para el estado y los pendientes, [`docs/CHANGELOG.md`](docs/CHANGELOG.md). Para el plan de escalabilidad (backend y TypeScript, **aún no implementado**), consulta [`docs/PLAN-ESCALABILIDAD.md`](docs/PLAN-ESCALABILIDAD.md).
+Este archivo es el contexto que debe leerse al iniciar cualquier sesión de trabajo. Para el detalle funcional completo consulta [`docs/SPEC.md`](docs/SPEC.md); para la radiografía técnica, [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md); para el estado y los pendientes, [`docs/CHANGELOG.md`](docs/CHANGELOG.md). Para el plan de escalabilidad (backend y TypeScript, **aún no implementado**), consulta [`docs/PLAN-ESCALABILIDAD.md`](docs/PLAN-ESCALABILIDAD.md).
+
+Los cambios no triviales se planifican con **OpenSpec** antes de escribir código. Las specs de comportamiento viven en `openspec/specs/`; los planes en curso, en `openspec/changes/`.
 
 ## Estado actual
 
@@ -15,11 +17,15 @@ Este archivo es el contexto que debe leerse al iniciar cualquier sesión de trab
 ## Comandos
 
 ```bash
-npm start        # servidor local en http://localhost:5173
-npm run assets   # regenera assets/img/*.svg desde el generador
+npm start                     # servidor local en http://localhost:5173
+npm run assets                # regenera assets/img/*.svg desde el generador
+openspec list                 # cambios OpenSpec activos
+openspec list --specs         # specs principales
+openspec validate --all       # valida specs y cambios
+openspec update               # refresca skills tras actualizar el CLI
 ```
 
-No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa módulos ES.
+No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa módulos ES. OpenSpec es una herramienta de desarrollo global: `npm install -g @fission-ai/openspec@latest` (requiere Node ≥ 22.12).
 
 ## Mapa de archivos
 
@@ -33,9 +39,13 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 | `tools/generate-assets.mjs` | Genera las imágenes de producto con `buildGlassesSVG` |
 | `tools/serve.mjs` | Servidor estático de desarrollo |
 | `docs/SPEC.md` | Especificación funcional y técnica detallada |
+| `docs/ARCHITECTURE.md` | Radiografía de capas, vistas, componentes y puntos de integración con backend |
 | `docs/CHANGELOG.md` | Bitácora de cambios, decisiones y pendientes |
 | `docs/PLAN-ESCALABILIDAD.md` | Plan de migración a TypeScript, backend y workflow de cambios (propuesta) |
-| `nn.docx` | Archivo personal del usuario. **No rastrear, no borrar, no commitear** |
+| `openspec/config.yaml` | Contexto de OpenSpec para generar artefactos en español |
+| `openspec/specs/` | Comportamiento actual del sistema, por dominio |
+| `openspec/changes/` | Propuestas, diseños y tareas de cambios en curso |
+| `.agents/skills/openspec-*` | Skills de OpenSpec para OpenCode; generadas por el CLI |
 
 ## Arquitectura y convenciones
 
@@ -79,6 +89,17 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 - Las imágenes de producto necesitan `alt` descriptivo; los elementos decorativos, `aria-hidden`.
 - Probar navegación por teclado y el menú móvil después de cambios de UI.
 
+## OpenSpec (workflow de cambios)
+
+- **Cuándo usarlo:** cambios no triviales de comportamiento, arquitectura, datos o integraciones. Para retoques de una línea o copy, basta el flujo normal.
+- **Ciclo:** explorar → proponer → revisar el plan → aplicar tareas → archivar. No se escribe código antes de aprobar la propuesta.
+- **Skills disponibles en OpenCode:** `openspec-explore`, `openspec-propose`, `openspec-update-change`, `openspec-apply-change`, `openspec-sync-specs` y `openspec-archive-change`.
+- **Fuente de verdad:** `openspec/specs/` describe el comportamiento acordado; `openspec/changes/<cambio>/` describe el trabajo en curso; `AGENTS.md` sigue siendo la autoridad sobre reglas operativas, stack y diseño.
+- **Un cambio = un objetivo entregable.** `tasks.md` debe tener tareas verificables y `proposal.md` debe declarar el fuera de alcance.
+- **No duplicar reglas:** si una regla de negocio ya está en `docs/SPEC.md` o `AGENTS.md`, la spec la referencia en lugar de copiarla.
+- **Al terminar:** `openspec validate --all`, archivar el cambio y actualizar `README.md`, `AGENTS.md` o `CHANGELOG.md` si cambió el workflow o el estado.
+- El contexto de generación está en `openspec/config.yaml`; los artefactos se escriben en español.
+
 ## Flujo de Git (preferencia del usuario)
 
 - **“Haz un commit” / “guarda en local”** → solo commit local. **No hacer push.**
@@ -95,8 +116,9 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 3. Comprobar teclado, foco del carrito y `Escape`.
 4. Confirmar que el carrito, totales y `localStorage` siguen funcionando.
 5. Mantener el resultado de Lighthouse.
-6. Actualizar `docs/CHANGELOG.md` y, si cambia el comportamiento, `docs/SPEC.md`.
-7. Hacer commit solo si el usuario lo pidió, con mensaje descriptivo en español.
+6. Actualizar `docs/CHANGELOG.md` y, si cambia el comportamiento, `docs/SPEC.md` y la spec de OpenSpec correspondiente.
+7. Si hubo un cambio OpenSpec, ejecutar `openspec validate --all` y archivarlo.
+8. Hacer commit solo si el usuario lo pidió, con mensaje descriptivo en español.
 
 ## Cómo ampliar
 
@@ -104,3 +126,4 @@ No hay build, tests ni lint. Se debe servir por HTTP porque `js/app.js` usa mód
 - **Nueva forma/color/tinte:** editar `SHAPES`, `FRAME_COLORS` o `TINTS` en `js/frames.js`; el personalizador se actualiza solo. Regenerar imágenes si cambia el arte.
 - **Nuevo filtro:** añadir el botón en `index.html` y usar el mismo `data-filter` que el `group` de los productos.
 - **Cambios de diseño:** usar las variables CSS de `:root`; evitar valores mágicos repetidos.
+- **Cambio no trivial:** crear una propuesta OpenSpec antes de tocar el código y archivar la spec al terminar.
